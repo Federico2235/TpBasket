@@ -2,6 +2,7 @@ package fr.eni.basket.controllers;
 
 import fr.eni.basket.bll.BasketService;
 import fr.eni.basket.bo.Equipe;
+import fr.eni.basket.dto.EquipeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,9 +29,9 @@ return basketService.getAllEquipes();
 
 }
 
-@PostMapping("equipes/add")
-    public void addEquipe(@RequestBody Equipe equipe) {
-        basketService.addEquipe(equipe);
+@PostMapping("equipes")
+    public void addEquipe(@RequestBody EquipeDTO equipeDTO) {
+        basketService.addEquipe(equipeDTO);
 
 }
 

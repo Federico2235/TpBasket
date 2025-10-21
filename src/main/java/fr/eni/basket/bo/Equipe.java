@@ -1,24 +1,21 @@
 package fr.eni.basket.bo;
 
+import fr.eni.basket.dto.EquipeDTO;
+
 import java.util.List;
 import java.util.Objects;
 
 public class Equipe {
 
-    private String nbEquipe;
+    private int nbEquipe;
     private String nomEquipe;
     private List<Jouer> jouers;
 
-    public Equipe(String nbEquipe, String nomEquipe) {
-        this.nbEquipe = nbEquipe;
-        this.nomEquipe = nomEquipe;
-    }
-
-    public String getNbEquipe() {
+    public int getNbEquipe() {
         return nbEquipe;
     }
 
-    public void setNbEquipe(String nbEquipe) {
+    public void setNbEquipe(int nbEquipe) {
         this.nbEquipe = nbEquipe;
     }
 
@@ -37,6 +34,15 @@ public class Equipe {
     public void setJouers(List<Jouer> jouers) {
         this.jouers = jouers;
     }
+
+    public Equipe() {}
+
+    public Equipe(int nbEquipe, String nomEquipe) {
+        this.nbEquipe = nbEquipe;
+        this.nomEquipe = nomEquipe;
+    }
+
+
 
     @Override
     public boolean equals(Object obj) {
