@@ -3,7 +3,11 @@ package fr.eni.basket.controllers;
 import fr.eni.basket.bll.BasketService;
 import fr.eni.basket.bo.Equipe;
 import fr.eni.basket.dto.EquipeDTO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,9 +34,15 @@ return basketService.getAllEquipes();
 }
 
 @PostMapping("equipes")
-    public void addEquipe(@RequestBody EquipeDTO equipeDTO) {
-        basketService.addEquipe(equipeDTO);
+    public ResponseEntity<Equipe> addEquipe(@Valid @RequestBody EquipeDTO equipeDTO , BindingResult result ) {
+    Equipe equipe = null;
 
+    if (result.hasErrors()) {
+        return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+    }
+
+        equipe= basketService.addEquipe(equipeDTO);
+return ResponseEntity.status(HttpStatus.CREATED).body(equipe);
 }
 
 
