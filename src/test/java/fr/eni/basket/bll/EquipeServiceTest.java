@@ -46,6 +46,32 @@ public class EquipeServiceTest {
 
 
     @Test
+    @DisplayName("Test de supression des equipes")
+    public void testRempveEquipe() {
+
+        List<Equipe> equipes = new ArrayList<>();
+        Equipe equipe1 =new Equipe(1,"U15F1");
+        Equipe equipe2 =new Equipe(2,"U15F2");
+        Equipe equipe3 =new Equipe(3,"U15F3");
+        equipes.add(equipe1);
+        equipes.add(equipe2);
+        equipes.add(equipe3);
+        equipeService.setEquipe(equipes);
+        int nbEquipe=1;
+
+        //Act
+
+       equipeService.removeEquipeByNb(nbEquipe);
+        //Assert
+
+        assertEquals(0,equipeService.getAllEquipes().stream().filter(equipe -> equipe.getNbEquipe()==nbEquipe).count());
+
+
+
+
+    }
+
+    @Test
     @DisplayName("Test de recuperation des equipes")
     public void getEquipes()
     {
