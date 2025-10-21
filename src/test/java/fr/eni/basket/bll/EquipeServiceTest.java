@@ -46,6 +46,7 @@ public class EquipeServiceTest {
 
 
     @Test
+    @DisplayName("Test de recuperation des equipes")
     public void getEquipes()
     {
         //AAA

@@ -50,7 +50,7 @@ return newEquipe;
 
     @Override
     public void removeEquipeByNb(int nb) {
-
+equipes.removeIf(equipe -> equipe.getNbEquipe()==nb);
 
     }
 
