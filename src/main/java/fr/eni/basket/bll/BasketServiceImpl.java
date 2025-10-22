@@ -61,11 +61,16 @@ return equipeRepository.findAllEquipes();
 
     @Override
     public Equipe addEquipe(EquipeDTO equipeDto) {
-        Equipe newEquipe =new Equipe();
-        BeanUtils.copyProperties(equipeDto,newEquipe);
-        newEquipe.setNbEquipe(indexNbEquipe++);
-        equipes.add(newEquipe);
-return newEquipe;
+//        Equipe newEquipe =new Equipe();
+//        BeanUtils.copyProperties(equipeDto,newEquipe);
+//        newEquipe.setNbEquipe(indexNbEquipe++);
+//        equipes.add(newEquipe);
+//return newEquipe;
+        Equipe equipe = new Equipe();
+        BeanUtils.copyProperties(equipeDto,equipe);
+        equipeRepository.save(equipe);
+        return equipe;
+
     }
 
 

@@ -3,8 +3,11 @@ package fr.eni.basket.dal;
 import fr.eni.basket.bo.Equipe;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -45,5 +48,24 @@ public class EquipeRepositoryImpl implements EquipeRepository {
         return Optional.ofNullable(equipe);
 
 
+    }
+
+    @Override
+    public Equipe save(Equipe equipe) {
+        String sql = "INSERT INTO Equipes (nom) VALUES (?)";
+
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, new String[]{"noEquipe"});
+            ps.setString(1, equipe.getNomEquipe());
+            return ps;
+        }, keyHolder);
+
+        // Obtener el id generado
+        int generatedId = keyHolder.getKey().intValue();
+        equipe.setNbEquipe(generatedId);
+
+        return equipe;
     }
 }
