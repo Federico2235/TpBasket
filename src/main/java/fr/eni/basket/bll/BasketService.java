@@ -5,6 +5,7 @@ import fr.eni.basket.bo.Joueur;
 import fr.eni.basket.dto.EquipeDTO;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface BasketService {
 
@@ -17,7 +18,7 @@ public interface BasketService {
 
     public void removeEquipeByNb(int nb);
 
-    public Equipe getEquipe(String nomEquipe);
+    public Optional<Equipe> getEquipe(String nomEquipe);
 
     public List<Joueur> getJouers();
 }

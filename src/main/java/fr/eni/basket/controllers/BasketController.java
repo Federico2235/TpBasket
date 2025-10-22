@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class BasketController {
@@ -61,7 +62,7 @@ return ResponseEntity.status(HttpStatus.CREATED).body(equipe);
 //
 
     @GetMapping("/equipes/{nomEquipe}")
-    public Equipe getEquipeByName(@PathVariable("nomEquipe") String nomEquipe) {
+    public Optional<Equipe> getEquipeByName(@PathVariable("nomEquipe") String nomEquipe) {
         return basketService.getEquipe(nomEquipe);
 
     }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BasketServiceImpl implements BasketService {
@@ -75,8 +76,10 @@ equipes.removeIf(equipe -> equipe.getNbEquipe()==nb);
     }
 
     @Override
-    public Equipe getEquipe(String nomEquipe) {
-    Equipe equipe= equipes.stream().filter(equipes-> equipes.getNomEquipe().equals(nomEquipe)).findFirst().orElse(null);
+    public Optional<Equipe> getEquipe(String nomEquipe) {
+//    Equipe equipe= equipes.stream().filter(equipes-> equipes.getNomEquipe().equals(nomEquipe)).findFirst().orElse(null);
+        Optional<Equipe> equipe=equipeRepository.findEquipeByName(nomEquipe);
+
         return equipe;
     }
 
