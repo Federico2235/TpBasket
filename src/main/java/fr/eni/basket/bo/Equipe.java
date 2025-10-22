@@ -7,7 +7,7 @@ public class Equipe {
 
     private int nbEquipe;
     private String nomEquipe;
-    private List<Joueur> joueurs;
+
 
     public int getNbEquipe() {
         return nbEquipe;
@@ -25,13 +25,6 @@ public class Equipe {
         this.nomEquipe = nomEquipe;
     }
 
-    public List<Joueur> getJouers() {
-        return joueurs;
-    }
-
-    public void setJouers(List<Joueur> joueurs) {
-        this.joueurs = joueurs;
-    }
 
     public Equipe() {}
 
