@@ -44,6 +44,23 @@ return ResponseEntity.status(HttpStatus.CREATED).body(equipe);
 
 
 
+//
+//@DeleteMapping("/equipes")
+//public ResponseEntity<Void> deleteEquipe(@Valid @RequestParam('nbEquipe') int nbEquipe ) {
+//    basketService.removeEquipeByNb(nbEquipe);
+//    return ResponseEntity.status(HttpStatus.NO_CONTENT).body(nbEquipe);
+//
+//
+//}
+//
+
+    @GetMapping("/equipes/{nomEquipe}")
+    public Equipe getEquipeByName(@PathVariable("nomEquipe") String nomEquipe) {
+        return basketService.getEquipe(nomEquipe);
+
+    }
+
+
     @DeleteMapping("/equipes/{nbEquipe}")
     public ResponseEntity<Integer> deleteEquipe(@PathVariable int nbEquipe){
         basketService.removeEquipeByNb(nbEquipe);

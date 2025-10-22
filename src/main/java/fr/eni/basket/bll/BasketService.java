@@ -15,4 +15,6 @@ public interface BasketService {
     public Equipe addEquipe(EquipeDTO equipeDTO);
 
     public void removeEquipeByNb(int nb);
+
+    public Equipe getEquipe(String nomEquipe);
 }

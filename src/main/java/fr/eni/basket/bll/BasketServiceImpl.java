@@ -54,6 +54,12 @@ equipes.removeIf(equipe -> equipe.getNbEquipe()==nb);
 
     }
 
+    @Override
+    public Equipe getEquipe(String nomEquipe) {
+    Equipe equipe= equipes.stream().filter(equipes-> equipes.getNomEquipe().equals(nomEquipe)).findFirst().orElse(null);
+        return equipe;
+    }
+
     public void setEquipe(List<Equipe> equipes) {
     this.equipes = new ArrayList<>(equipes);
     }

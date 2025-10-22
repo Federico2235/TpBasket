@@ -96,5 +96,32 @@ public class EquipeServiceTest {
 
     }
 
+
+   @Test
+    @DisplayName("Test de recuperation des equipes par nom")
+    public void getEquipesByName()
+    {
+        //AAA
+        // Arrange
+
+
+        List<Equipe> equipes = new ArrayList<>();
+        Equipe equipe1 =new Equipe(1,"U15F1");
+        Equipe equipe2 =new Equipe(2,"U15F2");
+        Equipe equipe3 =new Equipe(3,"U15F3");
+        equipes.add(equipe1);
+        equipes.add(equipe2);
+        equipes.add(equipe3);
+        equipeService.setEquipe(equipes);
+
+        //Act
+        Equipe resultat = equipeService.getEquipe(equipe1.getNomEquipe());
+
+        //Asserts
+        assertEquals(resultat.getNomEquipe(),equipe1.getNomEquipe());
+
+    }
+
+
     }
 
