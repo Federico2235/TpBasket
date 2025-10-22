@@ -33,14 +33,14 @@ public class EquipeRepositoryImpl implements EquipeRepository {
 
     @Override
     public List<Equipe> findAllEquipes() {
-        String sql = "SELECT noEquipe, nom FROM Equipe";
+        String sql = "SELECT noEquipe, nom FROM Equipes";
         List<Equipe> equipes= jdbcTemplate.query(sql,new EquipeRowMapper());
         return equipes;
     }
 
     @Override
     public Optional<Equipe> findEquipeByName(String nomEquipe) {
-        String sql = "SELECT noEquipe, nom FROM Equipe WHERE nom = ?";
+        String sql = "SELECT noEquipe, nom FROM Equipes WHERE nom = ?";
         Equipe equipe= jdbcTemplate.queryForObject(sql, new EquipeRowMapper(),nomEquipe);
         return Optional.ofNullable(equipe);
 

@@ -2,6 +2,7 @@ package fr.eni.basket.bll;
 
 import fr.eni.basket.bo.Equipe;
 import fr.eni.basket.bo.Joueur;
+import fr.eni.basket.dal.EquipeRepository;
 import fr.eni.basket.dto.EquipeDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -14,32 +15,32 @@ public class BasketServiceImpl implements BasketService {
 
     List<Joueur> joueurs = new ArrayList<>();
     public static int indexNbJouer = 1;
-
-
+    EquipeRepository equipeRepository;
+//
     List<Equipe> equipes = new ArrayList<>();
  public static int indexNbEquipe=1;
-public BasketServiceImpl() {
+public BasketServiceImpl( EquipeRepository equipeRepository) {
 
-    Equipe equipe1 =new Equipe(indexNbEquipe++,"U15F1");
-    Equipe equipe2 =new Equipe(indexNbEquipe++,"U15F2");
-    Equipe equipe3 =new Equipe(indexNbEquipe++,"U15F3");
-    equipes.add(equipe1);
-    equipes.add(equipe2);
-    equipes.add(equipe3);
-
-
-    Joueur joueur1 =new Joueur(indexNbJouer++,"Federico","AN","fede@an.fr",equipe2);
-    Joueur joueur2 = new Joueur(indexNbJouer++,"Seb","Laloe","seb@lalo.fr",equipe3);
-    joueurs.add(joueur1);
-    joueurs.add(joueur2);
-
+//    Equipe equipe1 =new Equipe(indexNbEquipe++,"U15F1");
+//    Equipe equipe2 =new Equipe(indexNbEquipe++,"U15F2");
+//    Equipe equipe3 =new Equipe(indexNbEquipe++,"U15F3");
+//    equipes.add(equipe1);
+//    equipes.add(equipe2);
+//    equipes.add(equipe3);
+//
+//
+//    Joueur joueur1 =new Joueur(indexNbJouer++,"Federico","AN","fede@an.fr",equipe2);
+//    Joueur joueur2 = new Joueur(indexNbJouer++,"Seb","Laloe","seb@lalo.fr",equipe3);
+//    joueurs.add(joueur1);
+//    joueurs.add(joueur2);
+    this.equipeRepository = equipeRepository;
 }
 
 
 
     @Override
     public List<Equipe> getAllEquipes() {
-return equipes;
+return equipeRepository.findAllEquipes();
 
 
     }
