@@ -1,6 +1,7 @@
 package fr.eni.basket.bll;
 
 import fr.eni.basket.bo.Equipe;
+import fr.eni.basket.bo.Joueur;
 import fr.eni.basket.dto.EquipeDTO;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface BasketService {
     public void removeEquipeByNb(int nb);
 
     public Equipe getEquipe(String nomEquipe);
+
+    public List<Joueur> getJouers();
 }

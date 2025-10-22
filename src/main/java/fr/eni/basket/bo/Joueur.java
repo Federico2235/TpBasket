@@ -1,6 +1,6 @@
 package fr.eni.basket.bo;
 
-public class Jouer {
+public class Joueur {
     private int noJoueur;
     private String prenom;
     private String nom;
@@ -48,7 +48,7 @@ public class Jouer {
         this.equipe = equipe;
     }
 
-    public Jouer(int noJoueur, String prenom, String nom, String email, Equipe equipe) {
+    public Joueur(int noJoueur, String prenom, String nom, String email, Equipe equipe) {
         this.noJoueur = noJoueur;
         this.prenom = prenom;
         this.nom = nom;

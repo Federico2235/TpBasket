@@ -2,14 +2,13 @@ package fr.eni.basket.controllers;
 
 import fr.eni.basket.bll.BasketService;
 import fr.eni.basket.bo.Equipe;
+import fr.eni.basket.bo.Joueur;
 import fr.eni.basket.dto.EquipeDTO;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -29,6 +28,13 @@ public List<Equipe> showBasketTeams()
 return basketService.getAllEquipes();
 
 }
+
+@GetMapping("/joueurs")
+public List<Joueur> showJouers()
+{
+    return basketService.getJouers();
+}
+
 
 @PostMapping("/equipes")
     public ResponseEntity<Equipe> addEquipe(@Valid @RequestBody EquipeDTO equipeDTO , BindingResult result ) {
