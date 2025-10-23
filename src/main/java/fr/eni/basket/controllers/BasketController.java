@@ -25,51 +25,22 @@ public class BasketController {
     }
 
     @GetMapping("/equipes")
-public List<Equipe> showBasketTeams()
-{
-return basketService.getAllEquipes();
+    public List<Equipe> showBasketTeams() {
+        return basketService.getAllEquipes();
 
-}
-
-@GetMapping("/joueurs")
-public List<Joueur> showJouers()
-{
-    return basketService.getJouers();
-}
-
-
-@PostMapping("/joueurs")
-public ResponseEntity<JoueurDTO> addJoueur(@Valid @RequestBody JoueurDTO joueur, BindingResult result){
-        if(result.hasErrors()){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
-        joueur=basketService.addJoueur(joueur);
-        return ResponseEntity.status(HttpStatus.CREATED).body(joueur);
-}
-
-@PostMapping("/equipes")
-    public ResponseEntity<Equipe> addEquipe(@Valid @RequestBody EquipeDTO equipeDTO , BindingResult result ) {
-    Equipe equipe = null;
-
-    if (result.hasErrors()) {
-        return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
 
-        equipe= basketService.addEquipe(equipeDTO);
-return ResponseEntity.status(HttpStatus.CREATED).body(equipe);
-}
+    @PostMapping("/equipes")
+    public ResponseEntity<Equipe> addEquipe(@Valid @RequestBody EquipeDTO equipeDTO, BindingResult result) {
+        Equipe equipe = null;
 
+        if (result.hasErrors()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
 
-
-//
-//@DeleteMapping("/equipes")
-//public ResponseEntity<Void> deleteEquipe(@Valid @RequestParam('nbEquipe') int nbEquipe ) {
-//    basketService.removeEquipeByNb(nbEquipe);
-//    return ResponseEntity.status(HttpStatus.NO_CONTENT).body(nbEquipe);
-//
-//
-//}
-//
+        equipe = basketService.addEquipe(equipeDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(equipe);
+    }
 
     @GetMapping("/equipes/{nomEquipe}")
     public Optional<Equipe> getEquipeByName(@PathVariable("nomEquipe") String nomEquipe) {
@@ -79,20 +50,36 @@ return ResponseEntity.status(HttpStatus.CREATED).body(equipe);
 
 
     @DeleteMapping("/equipes/{nbEquipe}")
-    public ResponseEntity<Integer> deleteEquipe(@PathVariable int nbEquipe){
+    public ResponseEntity<Integer> deleteEquipe(@PathVariable int nbEquipe) {
         basketService.removeEquipeByNb(nbEquipe);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(nbEquipe);
 
     }
+
+    @GetMapping("/joueurs")
+    public List<Joueur> showJouers() {
+        return basketService.getJouers();
+    }
+
+
+    @PostMapping("/joueurs")
+    public ResponseEntity<JoueurDTO> addJoueur(@Valid @RequestBody JoueurDTO joueur, BindingResult result) {
+        if (result.hasErrors()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        joueur = basketService.addJoueur(joueur);
+        return ResponseEntity.status(HttpStatus.CREATED).body(joueur);
+    }
+
     @DeleteMapping("/joueurs/{noJoueur}")
-    public ResponseEntity<Integer> deleteJoueur(@PathVariable int noJoueur){
+    public ResponseEntity<Integer> deleteJoueur(@PathVariable int noJoueur) {
         basketService.removeJoueur(noJoueur);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(noJoueur);
     }
 
-    @PatchMapping ("/joueurs/{noJoueur}")
-    public ResponseEntity<Joueur> changeEquipeJoueur(@PathVariable int noJoueur,@RequestParam int noEquipe) {
-       Joueur joueur= basketService.changeEquipeJoueur(noJoueur,noEquipe);
+    @PatchMapping("/joueurs/{noJoueur}")
+    public ResponseEntity<Joueur> changeEquipeJoueur(@PathVariable int noJoueur, @RequestParam int noEquipe) {
+        Joueur joueur = basketService.changeEquipeJoueur(noJoueur, noEquipe);
         return ResponseEntity.ok(joueur);
 
 

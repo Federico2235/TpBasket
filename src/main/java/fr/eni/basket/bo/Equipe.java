@@ -26,7 +26,8 @@ public class Equipe {
     }
 
 
-    public Equipe() {}
+    public Equipe() {
+    }
 
     public Equipe(int nbEquipe, String nomEquipe) {
         this.nbEquipe = nbEquipe;
@@ -34,10 +35,9 @@ public class Equipe {
     }
 
 
-
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof Equipe equipe)) return false;
+        if (!(obj instanceof Equipe equipe)) return false;
         return Objects.equals(nbEquipe, equipe.nbEquipe);
     }
 
@@ -49,6 +49,6 @@ public class Equipe {
     @Override
     public String toString() {
 
-        return "Equipe{"+"noEquipe=" + nbEquipe + ","+"nomEquipe=" + nomEquipe +"}";
+        return "Equipe{" + "noEquipe=" + nbEquipe + "," + "nomEquipe=" + nomEquipe + "}";
     }
 }

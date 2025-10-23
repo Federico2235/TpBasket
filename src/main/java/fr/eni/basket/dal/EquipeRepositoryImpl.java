@@ -16,7 +16,7 @@ import java.util.Optional;
 @Repository
 public class EquipeRepositoryImpl implements EquipeRepository {
 
-   private JdbcTemplate jdbcTemplate ;
+    private JdbcTemplate jdbcTemplate;
 
     public EquipeRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -37,14 +37,14 @@ public class EquipeRepositoryImpl implements EquipeRepository {
     @Override
     public List<Equipe> findAllEquipes() {
         String sql = "SELECT noEquipe, nom FROM Equipes";
-        List<Equipe> equipes= jdbcTemplate.query(sql,new EquipeRowMapper());
+        List<Equipe> equipes = jdbcTemplate.query(sql, new EquipeRowMapper());
         return equipes;
     }
 
     @Override
     public Optional<Equipe> findEquipeByName(String nomEquipe) {
         String sql = "SELECT noEquipe, nom FROM Equipes WHERE nom = ?";
-        Equipe equipe= jdbcTemplate.queryForObject(sql, new EquipeRowMapper(),nomEquipe);
+        Equipe equipe = jdbcTemplate.queryForObject(sql, new EquipeRowMapper(), nomEquipe);
         return Optional.ofNullable(equipe);
 
 
@@ -72,6 +72,6 @@ public class EquipeRepositoryImpl implements EquipeRepository {
     @Override
     public void delete(int noEquipe) {
         String sql = "DELETE FROM Equipes WHERE noEquipe = ?";
-        jdbcTemplate.update(sql,noEquipe);
+        jdbcTemplate.update(sql, noEquipe);
     }
 }
