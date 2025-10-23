@@ -2,16 +2,17 @@ package fr.eni.basket.controllers;
 
 import fr.eni.basket.bll.BasketService;
 import fr.eni.basket.bo.Equipe;
+import fr.eni.basket.bo.Joueur;
 import fr.eni.basket.dto.EquipeDTO;
+import fr.eni.basket.dto.JoueurDTO;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class BasketController {
@@ -28,6 +29,22 @@ public List<Equipe> showBasketTeams()
 {
 return basketService.getAllEquipes();
 
+}
+
+@GetMapping("/joueurs")
+public List<Joueur> showJouers()
+{
+    return basketService.getJouers();
+}
+
+
+@PostMapping("/joueurs")
+public ResponseEntity<JoueurDTO> addJoueur(@Valid @RequestBody JoueurDTO joueur, BindingResult result){
+        if(result.hasErrors()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        joueur=basketService.addJoueur(joueur);
+        return ResponseEntity.status(HttpStatus.CREATED).body(joueur);
 }
 
 @PostMapping("/equipes")
@@ -55,7 +72,7 @@ return ResponseEntity.status(HttpStatus.CREATED).body(equipe);
 //
 
     @GetMapping("/equipes/{nomEquipe}")
-    public Equipe getEquipeByName(@PathVariable("nomEquipe") String nomEquipe) {
+    public Optional<Equipe> getEquipeByName(@PathVariable("nomEquipe") String nomEquipe) {
         return basketService.getEquipe(nomEquipe);
 
     }
@@ -67,4 +84,18 @@ return ResponseEntity.status(HttpStatus.CREATED).body(equipe);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(nbEquipe);
 
     }
+    @DeleteMapping("/joueurs/{noJoueur}")
+    public ResponseEntity<Integer> deleteJoueur(@PathVariable int noJoueur){
+        basketService.removeJoueur(noJoueur);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(noJoueur);
+    }
+
+    @PatchMapping ("/joueurs/{noJoueur}")
+    public ResponseEntity<Joueur> changeEquipeJoueur(@PathVariable int noJoueur,@RequestParam int noEquipe) {
+       Joueur joueur= basketService.changeEquipeJoueur(noJoueur,noEquipe);
+        return ResponseEntity.ok(joueur);
+
+
+    }
+
 }

@@ -1,7 +1,5 @@
 package fr.eni.basket.bo;
 
-import fr.eni.basket.dto.EquipeDTO;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -9,7 +7,7 @@ public class Equipe {
 
     private int nbEquipe;
     private String nomEquipe;
-    private List<Jouer> jouers;
+
 
     public int getNbEquipe() {
         return nbEquipe;
@@ -27,13 +25,6 @@ public class Equipe {
         this.nomEquipe = nomEquipe;
     }
 
-    public List<Jouer> getJouers() {
-        return jouers;
-    }
-
-    public void setJouers(List<Jouer> jouers) {
-        this.jouers = jouers;
-    }
 
     public Equipe() {}
 
