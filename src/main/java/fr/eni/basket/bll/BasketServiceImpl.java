@@ -55,6 +55,11 @@ return equipeRepository.findAllEquipes();
         return joueurRepository.getJoueurs();
     }
 
+    @Override
+    public Joueur addJoueur(Joueur joueur) {
+        joueurRepository.addJoueur(joueur);
+        return joueur;
+    }
 
 
 //    @Override
@@ -94,6 +99,7 @@ equipeRepository.delete(nb);
     }
 
 
+
     public void setEquipe(List<Equipe> equipes) {
     this.equipes = new ArrayList<>(equipes);
     }
@@ -101,5 +107,6 @@ equipeRepository.delete(nb);
     public void setJouers(List<Joueur> joueurs) {
     this.joueurs = new ArrayList<>(joueurs);
     }
+
 
 }

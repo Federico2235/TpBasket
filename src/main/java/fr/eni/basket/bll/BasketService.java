@@ -21,4 +21,6 @@ public interface BasketService {
     public Optional<Equipe> getEquipe(String nomEquipe);
 
     public List<Joueur> getJouers();
+
+    public Joueur addJoueur(Joueur joueur);
 }

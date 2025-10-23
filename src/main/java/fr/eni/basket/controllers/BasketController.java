@@ -37,6 +37,15 @@ public List<Joueur> showJouers()
 }
 
 
+@PostMapping("/joueurs")
+public ResponseEntity<Joueur> addJoueur(@Valid @RequestBody Joueur joueur, BindingResult result){
+        if(result.hasErrors()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        joueur=basketService.addJoueur(joueur);
+        return ResponseEntity.status(HttpStatus.CREATED).body(joueur);
+}
+
 @PostMapping("/equipes")
     public ResponseEntity<Equipe> addEquipe(@Valid @RequestBody EquipeDTO equipeDTO , BindingResult result ) {
     Equipe equipe = null;

@@ -4,8 +4,11 @@ import fr.eni.basket.bo.Equipe;
 import fr.eni.basket.bo.Joueur;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -40,4 +43,24 @@ List<Joueur> joueurs = jdbcTemplate.query(sql, new JoueurRowMapper());
 
         return joueurs;
     }
-}
+
+    @Override
+    public Joueur addJoueur(Joueur joueur) {
+        String sql="INSERT INTO Joueurs (prenom, nom, email, noEquipe) VALUES (?,?,?,?) ";
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, new String[]{"noEquipe"});
+            ps.setString(1, joueur.getPrenom());
+            ps.setString(2, joueur.getNom());
+            ps.setString(3, joueur.getEmail());
+            ps.setInt(4, joueur.getNoEquipe());
+            return ps;
+        },keyHolder);
+        int generatedId = keyHolder.getKey().intValue();
+        joueur.setNoJoueur(generatedId);
+
+        return joueur;
+        }
+
+    }
+

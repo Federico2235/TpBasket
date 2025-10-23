@@ -7,5 +7,6 @@ import java.util.List;
 public interface JoueurRepository {
 
     List<Joueur> getJoueurs();
+    Joueur addJoueur(Joueur joueur);
 
 }
