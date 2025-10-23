@@ -3,10 +3,12 @@ package fr.eni.basket.bll;
 import fr.eni.basket.bo.Equipe;
 import fr.eni.basket.bo.Joueur;
 import fr.eni.basket.dal.EquipeRepository;
+import fr.eni.basket.dal.JoueurRepository;
 import fr.eni.basket.dto.EquipeDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.awt.font.TextHitInfo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -17,10 +19,11 @@ public class BasketServiceImpl implements BasketService {
     List<Joueur> joueurs = new ArrayList<>();
     public static int indexNbJouer = 1;
     EquipeRepository equipeRepository;
+    JoueurRepository joueurRepository;
 //
     List<Equipe> equipes = new ArrayList<>();
  public static int indexNbEquipe=1;
-public BasketServiceImpl( EquipeRepository equipeRepository) {
+public BasketServiceImpl(EquipeRepository equipeRepository, JoueurRepository joueurRepository) {
 
 //    Equipe equipe1 =new Equipe(indexNbEquipe++,"U15F1");
 //    Equipe equipe2 =new Equipe(indexNbEquipe++,"U15F2");
@@ -35,6 +38,7 @@ public BasketServiceImpl( EquipeRepository equipeRepository) {
 //    joueurs.add(joueur1);
 //    joueurs.add(joueur2);
     this.equipeRepository = equipeRepository;
+    this.joueurRepository = joueurRepository;
 }
 
 
@@ -48,7 +52,7 @@ return equipeRepository.findAllEquipes();
 
     @Override
     public List<Joueur> getJouers() {
-        return joueurs;
+        return joueurRepository.getJoueurs();
     }
 
 
@@ -69,6 +73,7 @@ return equipeRepository.findAllEquipes();
         Equipe equipe = new Equipe();
         BeanUtils.copyProperties(equipeDto,equipe);
         equipeRepository.save(equipe);
+
         return equipe;
 
     }
