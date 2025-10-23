@@ -5,7 +5,7 @@ public class Joueur {
     private String prenom;
     private String nom;
     private String email;
-    private int noEquipe;
+    private Equipe equipe;
 
 
     public int getNoJoueur() {
@@ -43,19 +43,19 @@ public class Joueur {
         this.email = email;
     }
 
-    public int getNoEquipe() {
-        return noEquipe;
+    public Equipe getEquipe() {
+        return equipe;
     }
 
-    public void setNoEquipe(int noEquipe) {
-        this.noEquipe = noEquipe;
+    public void setEquipe(Equipe equipe) {
+        this.equipe = equipe;
     }
 
-    public Joueur(int noJoueur, String prenom, String nom, String email, int noEquipe) {
+    public Joueur(int noJoueur, String prenom, String nom, String email, Equipe equipe) {
         this.noJoueur = noJoueur;
         this.prenom = prenom;
         this.nom = nom;
         this.email = email;
-        this.noEquipe = noEquipe;
+        this.equipe = equipe;
     }
 }

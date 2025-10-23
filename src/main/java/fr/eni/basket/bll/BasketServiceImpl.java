@@ -5,6 +5,7 @@ import fr.eni.basket.bo.Joueur;
 import fr.eni.basket.dal.EquipeRepository;
 import fr.eni.basket.dal.JoueurRepository;
 import fr.eni.basket.dto.EquipeDTO;
+import fr.eni.basket.dto.JoueurDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -56,7 +57,7 @@ return equipeRepository.findAllEquipes();
     }
 
     @Override
-    public Joueur addJoueur(Joueur joueur) {
+    public JoueurDTO addJoueur(JoueurDTO joueur) {
         joueurRepository.addJoueur(joueur);
         return joueur;
     }
@@ -64,6 +65,12 @@ return equipeRepository.findAllEquipes();
     @Override
     public void removeJoueur(int noJoueur) {
         joueurRepository.deleteJoueur(noJoueur);
+    }
+
+    @Override
+    public Joueur changeEquipeJoueur(int noJoueur, int noEquipe) {
+       Joueur joueur= joueurRepository.changeEquipeJoueur(noJoueur,noEquipe);
+        return joueur;
     }
 
 
@@ -105,13 +112,13 @@ equipeRepository.delete(nb);
 
 
 
-    public void setEquipe(List<Equipe> equipes) {
-    this.equipes = new ArrayList<>(equipes);
-    }
-
-    public void setJouers(List<Joueur> joueurs) {
-    this.joueurs = new ArrayList<>(joueurs);
-    }
+//    public void setEquipe(List<Equipe> equipes) {
+//    this.equipes = new ArrayList<>(equipes);
+//    }
+//
+//    public void setJouers(List<Joueur> joueurs) {
+//    this.joueurs = new ArrayList<>(joueurs);
+//    }
 
 
 }

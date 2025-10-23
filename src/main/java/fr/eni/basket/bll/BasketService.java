@@ -3,6 +3,7 @@ package fr.eni.basket.bll;
 import fr.eni.basket.bo.Equipe;
 import fr.eni.basket.bo.Joueur;
 import fr.eni.basket.dto.EquipeDTO;
+import fr.eni.basket.dto.JoueurDTO;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +23,9 @@ public interface BasketService {
 
     public List<Joueur> getJouers();
 
-    public Joueur addJoueur(Joueur joueur);
+    public JoueurDTO addJoueur(JoueurDTO joueur);
 
     public void removeJoueur(int noJoueur);
+
+    public Joueur changeEquipeJoueur(int noJoueur,int noEquipe);
 }

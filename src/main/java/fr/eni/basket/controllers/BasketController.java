@@ -4,6 +4,7 @@ import fr.eni.basket.bll.BasketService;
 import fr.eni.basket.bo.Equipe;
 import fr.eni.basket.bo.Joueur;
 import fr.eni.basket.dto.EquipeDTO;
+import fr.eni.basket.dto.JoueurDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +39,7 @@ public List<Joueur> showJouers()
 
 
 @PostMapping("/joueurs")
-public ResponseEntity<Joueur> addJoueur(@Valid @RequestBody Joueur joueur, BindingResult result){
+public ResponseEntity<JoueurDTO> addJoueur(@Valid @RequestBody JoueurDTO joueur, BindingResult result){
         if(result.hasErrors()){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
@@ -87,6 +88,14 @@ return ResponseEntity.status(HttpStatus.CREATED).body(equipe);
     public ResponseEntity<Integer> deleteJoueur(@PathVariable int noJoueur){
         basketService.removeJoueur(noJoueur);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(noJoueur);
+    }
+
+    @PatchMapping ("/joueurs/{noJoueur}")
+    public ResponseEntity<Joueur> changeEquipeJoueur(@PathVariable int noJoueur,@RequestParam int noEquipe) {
+       Joueur joueur= basketService.changeEquipeJoueur(noJoueur,noEquipe);
+        return ResponseEntity.ok(joueur);
+
+
     }
 
 }
