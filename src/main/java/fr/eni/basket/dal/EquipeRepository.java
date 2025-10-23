@@ -10,6 +10,7 @@ public interface EquipeRepository {
     List<Equipe> findAllEquipes();
     Optional<Equipe> findEquipeByName(String nomEquipe);
     Equipe save(Equipe equipe);
+    void delete(int noEquipe);
 
 
 }

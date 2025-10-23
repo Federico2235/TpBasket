@@ -76,8 +76,8 @@ return equipeRepository.findAllEquipes();
 
     @Override
     public void removeEquipeByNb(int nb) {
-equipes.removeIf(equipe -> equipe.getNbEquipe()==nb);
-
+//equipes.removeIf(equipe -> equipe.getNbEquipe()==nb);
+equipeRepository.delete(nb);
     }
 
     @Override

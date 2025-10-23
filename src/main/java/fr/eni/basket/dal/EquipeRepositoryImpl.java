@@ -68,4 +68,10 @@ public class EquipeRepositoryImpl implements EquipeRepository {
 
         return equipe;
     }
+
+    @Override
+    public void delete(int noEquipe) {
+        String sql = "DELETE FROM Equipes WHERE noEquipe = ?";
+        jdbcTemplate.update(sql,noEquipe);
+    }
 }
