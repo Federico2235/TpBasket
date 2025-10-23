@@ -8,5 +8,6 @@ public interface JoueurRepository {
 
     List<Joueur> getJoueurs();
     Joueur addJoueur(Joueur joueur);
+    void deleteJoueur(int noJoueur);
 
 }

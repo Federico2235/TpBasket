@@ -62,5 +62,13 @@ List<Joueur> joueurs = jdbcTemplate.query(sql, new JoueurRowMapper());
         return joueur;
         }
 
+    @Override
+    public void deleteJoueur(int noJoueur) {
+        String sql = "DELETE FROM Joueurs WHERE noJoueur = ?";
+        jdbcTemplate.update(sql, noJoueur);
+
+
     }
+
+}
 

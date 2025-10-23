@@ -61,6 +61,11 @@ return equipeRepository.findAllEquipes();
         return joueur;
     }
 
+    @Override
+    public void removeJoueur(int noJoueur) {
+        joueurRepository.deleteJoueur(noJoueur);
+    }
+
 
 //    @Override
 //    public void addEquipe(Equipe equipe) {

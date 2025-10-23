@@ -23,4 +23,6 @@ public interface BasketService {
     public List<Joueur> getJouers();
 
     public Joueur addJoueur(Joueur joueur);
+
+    public void removeJoueur(int noJoueur);
 }

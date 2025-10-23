@@ -83,4 +83,10 @@ return ResponseEntity.status(HttpStatus.CREATED).body(equipe);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(nbEquipe);
 
     }
+    @DeleteMapping("/joueurs/{noJoueur}")
+    public ResponseEntity<Integer> deleteJoueur(@PathVariable int noJoueur){
+        basketService.removeJoueur(noJoueur);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(noJoueur);
+    }
+
 }
